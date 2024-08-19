@@ -1,0 +1,111 @@
+
+ /*@import url('https://fonts.googleapis.com/css2?family=Philosopher&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');*/
+
+
+
+.gbtn {
+    color: #42b983;
+    position: relative;
+    border-radius: 99px;
+    border: 1px solid #42b983;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    outline: none;
+    background: #fff;
+    transition: all 0.22s;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.gbtn.gprimary {
+    background: #42b983;
+    color: #fff;
+    display: none;
+}
+
+/*.gbtn:active {*/
+/*    box-shadow: insert 1px 1px 1px rgba(0, 0, 0, 0.3);*/
+/*}*/
+.gbtn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+/*input[type=file] {*/
+/*    display: none;*/
+/*}*/
+
+.gpreview {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+}
+
+.gpreview-img {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+.gpreview-img:hover .gpreview-remove {
+    opacity: 1;
+}
+.gpreview-img:hover .gpreview-info {
+    bottom: 0;
+}
+.gpreview-img img {
+    width: 180px;
+    height: 100%;
+    display: block;
+
+}
+
+.gpreview-remove {
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: bold;
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.22s;
+}
+
+.gpreview-info {
+    position: absolute;
+    left: 0;
+    bottom: -30px;
+    right: 0;
+    height: 24px;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    transition: bottom 0.22s;
+}
+
+.gpreview-img.gremoving {
+    transform: scale(0);
+    transition: transform 0.3s;
+}
+.gpreview-info-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #42b983;
+    transition: width 0.22s;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
