@@ -10,18 +10,18 @@
                         <h6 class="card-title" style="font-weight: 700; font-size: 150%;">
                             Уважаемые партнёры!
                             <br>
-                            Добро пожаловать на страницу саморегистрации поставщиков ПАО «СИБУР Холдинг».
+                            Добро пожаловать на страницу саморегистрации поставщиков ПАО «СИЛОВЫЕ МАШИНЫ Холдинг».
 
                         </h6>
                         <p class="card-title">
                             Прохождение регистрации у Вас займет несколько минут. Необходимо ввести основную информацию
-                            о компании для передачи данных в ПАО «СИБУР Холдинг» ( см. инструкцию ). Для идентификации
+                            о компании для передачи данных в ПАО «СИЛОВЫЕ МАШИНЫ Холдинг» ( см. инструкцию ). Для идентификации
                             компании требуется внести ИНН, КПП в разделе " Общая информация о компании ".
 
                             <br>
                             <br>
 
-                            Обращаем Ваше внимание, что компания Сибур работает в системе электронного документооборота.
+                            Обращаем Ваше внимание, что компания СИЛОВЫЕ МАШИНЫ работает в системе электронного документооборота.
                             Отсутствие электронной подписи на момент регистрации в системе не является блокирующим
                             фактором. Однако, в случае победы в конкурентных процедурах и в ходе подготовки к подписанию
                             контракта – одним из требований будет обязательное оформление участником в системе
@@ -311,7 +311,7 @@
                                                     <div class="form-group">
                                                         <label>Название банка:</label>
                                                         <input type="text" name="bank_name"
-                                                               value="{{request()->session()->get('class')[0] ?? ""}}"
+                                                               value="{{request()->session()->get('bank_name')[0] ?? ""}}"
                                                                class="form-control">
                                                     </div>
                                                     <div class="form-group">
@@ -389,14 +389,14 @@
                                                                required
                                                                value="{{request()->session()->get('position')[0] ?? ""}}">
                                                     </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label>ИНН Физ. Лица:</label>
                                                         <input type="text" name="inn_physical_person"
                                                                class="form-control" required
                                                                value="{{request()->session()->get('inn_physical_person')[0] ?? ""}}">
                                                     </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label><span class="text-red">*  </span>№ телефона: / Внутренний
                                                             номер:</label>
@@ -409,17 +409,17 @@
                                                         <input type="email" name="email" class="form-control" required
                                                                value="{{request()->session()->get('email')[0] ?? ""}}">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label><span class="text-red">* </span>Язык:</label>
-                                                        <select name="language_id" class="form-control">
-                                                            @foreach($languages as $language)
-                                                                <option
-                                                                    {{request()->session()->has('language_id') ? (request()->session()->get('language_id')[0] == $language->id ? 'selected' : '') : ''}} value="{{$language->id}}">
-                                                                    {{$language->title}}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                    {{--                                                    <div class="form-group">--}}
+                                                    {{--                                                        <label><span class="text-red">* </span>Язык:</label>--}}
+                                                    {{--                                                        <select name="language_id" class="form-control">--}}
+                                                    {{--                                                            @foreach($languages as $language)--}}
+                                                    {{--                                                                <option--}}
+                                                    {{--                                                                    {{request()->session()->has('language_id') ? (request()->session()->get('language_id')[0] == $language->id ? 'selected' : '') : ''}} value="{{$language->id}}">--}}
+                                                    {{--                                                                    {{$language->title}}--}}
+                                                    {{--                                                                </option>--}}
+                                                    {{--                                                            @endforeach--}}
+                                                    {{--                                                        </select>--}}
+                                                    {{--                                                    </div>--}}
                                                 </div>
                                             </div>
 
@@ -641,8 +641,9 @@
                                 <div class="col-md-6 offset-md-0">
                                     <div class="form-check">
                                         <a href="/" class="link">Условия сотрудничества</a>
-                                            <br>
-                                        <a href="/" class="link">Согласие на обработку и хранение персональных данных</a>
+                                        <br>
+                                        <a href="/" class="link">Согласие на обработку и хранение персональных
+                                            данных</a>
                                         <br>
                                         <input required
                                                type="checkbox" class="form-check-input"

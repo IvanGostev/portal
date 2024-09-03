@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('start')->nullable();
             $table->date('finish')->nullable();
             $table->smallInteger('indefinite')->default(0);
+            $table->text('text')->nullable();
             $table->string('patch');
             $table->timestamps();
         });

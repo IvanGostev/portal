@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-        <span class="brand-text font-weight-bold">СИБУР</span>
+        <span class="brand-text font-weight-bold">СИЛОВЫЕ МАШИНЫ</span>
     </a>
 
     <!-- Sidebar -->
@@ -56,17 +56,31 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('admin.language.index')}}" class="nav-link">
-                        <p>
-                            Языки
-                        </p>
-                    </a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{route('admin.language.index')}}" class="nav-link">--}}
+{{--                        <p>--}}
+{{--                            Языки--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a href="{{route('admin.annex.type.index')}}" class="nav-link">
                         <p>
                             Типы приложений
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.company.index')}}" class="nav-link">
+                        <p>
+                            Компании (Классификация)
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.procedure.index')}}" class="nav-link">
+                        <p>
+                            Процедуры
                         </p>
                     </a>
                 </li>

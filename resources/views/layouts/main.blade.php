@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>СИБУР АДМИН ПАНЕЛЬ</title>
+    <title>СИЛОВЫЕ МАШИНЫ АДМИН ПАНЕЛЬ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Google Font: Source Sans Pro -->
@@ -22,12 +22,19 @@
 
 </head>
 {{--        dark-mode--}}
-<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition layout-fixed layout-navbar-fixed layout-footer-fixed">
+<style>
+
+    .form-check-input:checked {
+        background-color: rgb(33, 37, 41);
+        border-color: rgb(33, 37, 41);
+    }
+</style>
 <div class="wrapper">
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <h1>СИБУР</h1>
+        <h1 class="font-weight-bolder">СИЛОВЫЕ МАШИНЫ</h1>
     </div>
 
     <!-- Navbar -->
@@ -68,7 +75,7 @@
 
     <!-- Main Footer -->
     <footer class="main-footer" style="position: relative">
-        <strong>Copyright &copy; 2024 <a href="/">СИБУР</a>.</strong>
+        <strong>Copyright &copy; 2024 <a href="/">СИЛОВЫЕ МАШИНЫ</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 1.0.0

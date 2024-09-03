@@ -14,11 +14,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-outline-dark">Добавить</a>
-                                <br>
                                <div class="row">
                                    <div class="col-lg-4">
-                                       <form class="row" action="{{route('admin.category.import')}}" method="post" enctype="multipart/form-data">
+                                       <form class="row" action="{{route('admin.procedure.import')}}" method="post" enctype="multipart/form-data">
                                            @csrf
                                            <div class="col-6">
                                                <input type="file" name="file" class="form-control-file">
@@ -29,11 +27,11 @@
                                        </form>
                                    </div>
                                    <div class="col-lg-2">
-                                       <a href="{{route('admin.category.export')}}" class="btn btn-dark btn-block">Экспорт</a>
+                                       <a href="{{route('admin.procedure.export')}}" class="btn btn-dark btn-block">Экспорт</a>
                                    </div>
                                </div>
                                 <br>
-                                <h3 class="card-title">Категории</h3>
+                                <h3 class="card-title">Процедуры</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -41,36 +39,29 @@
                                     <thead>
                                     <tr>
                                         <th>Название</th>
-                                        <th style="width: 40px">Кол. подкатегорий</th>
-                                        <th style="width: 40px">Смотреть подкатегории</th>
-                                        <th style="width: 40px">Добавить подкатегорию</th>
-                                        <th style="width: 40px">Редактировать</th>
+                                        <th>Категория</th>
+                                        <th>Статус</th>
+                                        <th>Способ закупки</th>
+                                        <th>Тип</th>
+                                        <th>Начало</th>
+                                        <th>Конец</th>
+                                        <th>URL</th>
                                         <th style="width: 40px">Удалить</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($procedures as $procedure)
                                         <tr>
-                                            <td>{{$category->title}}</td>
-                                            <td>{{$category->countSubcategories()}}</td>
-                                            <td><a class="btn btn-dark btn-sm"
-                                                   href="{{route('admin.category.subcategory.index', $category->id)}}">
-                                                    Смотреть подкатегории
-                                                </a></td>
-                                            <td><a class="btn btn-dark btn-sm"
-                                                   href="{{route('admin.category.subcategory.create', $category->id)}}">
-                                                    Добавить подкатегорию
-                                                </a></td>
-                                            <td><a class="btn btn-dark btn-sm"
-                                                   href="{{route('admin.category.edit', $category->id)}}">
-                                                    <i class="fas fa-pencil-alt">
-                                                    </i>
-                                                    Редактировать
-                                                </a>
-                                            </td>
-
+                                            <td>{{$procedure->title}}</td>
+                                            <td>{{$procedure->subcategory()->title}}</td>
+                                            <td>{{$procedure->status}}</td>
+                                            <td>{{$procedure->procurement_method}}</td>
+                                            <td>{{$procedure->type}}</td>
+                                            <td>{{$procedure->start}}</td>
+                                            <td>{{$procedure->finish}}</td>
+                                            <td>{{$procedure->url}}</td>
                                             <td>
-                                                <form action="{{ route('admin.category.destroy', $category->id) }}"
+                                                <form action="{{ route('admin.procedure.destroy', $procedure->id) }}"
                                                       method="post">
                                                     @method('delete')
                                                     @csrf
@@ -88,7 +79,7 @@
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
                                 <ul class="pagination pagination-sm m-0 float-right">
-                                    {{ $categories->links() }}
+                                    {{ $procedures->links() }}
                                 </ul>
                             </div>
                         </div>

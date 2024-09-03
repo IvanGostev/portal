@@ -15,8 +15,10 @@ use App\Models\Language;
 use App\Models\Subcategory;
 use App\Models\User;
 use App\Models\UserSubcategory;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -37,13 +39,13 @@ class RegisterSessionController extends Controller
         $languages = Language::all();
         $categories = Category::all();
         $annexTypes = AnnexType::all();
-        $selectedSubcategories = [];
-        if ($request->session()->has('categories')) {
 
+        if ($request->session()->has('categories')) {
             foreach ($request->session()->get('categories')[0] as $categoryId) {
                 $selectedSubcategories[] = Subcategory::where('id', $categoryId)->first();
             }
-
+        } else {
+            $selectedSubcategories = [];
         }
 
 
@@ -66,7 +68,7 @@ class RegisterSessionController extends Controller
             $filePatch = Storage::disk('public')->put($path, $data['file']);
             $file = [
                 'title' => $originalName,
-                'patch' => $filePatch,
+                'patch' => '/storage/' . $filePatch,
                 'type_annex_title' => AnnexType::where('id', $data['type_annex'])->first()->title,
                 'type_annex_id' => $data['type_annex'],
                 'finish_date' => $data['finish_date'],
@@ -109,54 +111,54 @@ class RegisterSessionController extends Controller
         }
 
         if (isset($data['register'])) {
-            unset($data['register']);
-            $categories = []; // id => type
-            if (isset($data['categories'])) {
-                foreach ($data['categories'] as $categoryID) {
-                    $categories[] = [$categoryID => $data['category_type_' . $categoryID]];
-                    unset($data['category_type_' . $categoryID]);
+            try {
+                DB::beginTransaction();
+                unset($data['register']);
+                $categories = []; // id => type
+                if (isset($data['categories'])) {
+                    foreach ($data['categories'] as $categoryID) {
+                        $categories[$categoryID] = $data['category_type_' . $categoryID];
+                        unset($data['category_type_' . $categoryID]);
+                    }
                 }
+                unset($data['categories']);
+                unset($data['type_annex']);
+                unset($data['start_date']);
+                unset($data['finish_date']);
+                unset($data['indefinite']);
+
+                $password = Str::random(12);
+                $data['password'] = Hash::make($password);
+                $user = User::create($data);
+                Mail::to($user->email)->send(new PasswordMail($password));
+                foreach ($categories as $subcategoryID => $type) {
+                    UserSubcategory::create([
+                        'user_id' => $user->id,
+                        'subcategory_id' => $subcategoryID,
+                        'type' => $type,
+                    ]);
+                }
+
+                $files = $request->session()->get('files')[0] ?? [];
+                $request->session()->flush();
+                foreach ($files as $file) {
+                    Annex::create([
+                        'user_id' => $user->id,
+                        'annex_type_id' => $file['type_annex_id'],
+                        'start' => $file['start_date'],
+                        'finish' => $file['finish_date'],
+                        'patch' => $file['patch']
+                    ]);
+                }
+                auth()->login($user);
+                DB::commit();
+                return redirect('/');
+            } catch (Exception $exception) {
+                DB::rollBack();
             }
-            unset($data['categories']);
-            unset($data['type_annex']);
-            unset($data['start_date']);
-            unset($data['finish_date']);
-            unset($data['indefinite']);
-
-            $password = Str::random(12);
-            $data['password'] = Hash::make($password);
-            $user = User::create($data);
-            Mail::to($user->email)->send(new PasswordMail($password));
-
-
-            foreach ($categories as $subcategoryID => $type) {
-                UserSubcategory::created([
-                    'user_id' => $user->id,
-                    'subcategory_id' => $subcategoryID,
-                    'type' => $type,
-                ]);
-            }
-
-            $files = $request->session()->get('files')[0] ?? [];
-            $request->session()->flush();
-
-            foreach ($files as $file) {
-                Annex::create([
-                    'user_id' => $user->id,
-                    'annex_type_id' => $file['type_annex_id'],
-                    'start' => $file['start_date'],
-                    'finish' => $file['finish_date'],
-                    'patch' => $file['patch']
-                ]);
-            }
-            auth()->login($user);
-            return redirect('/');
         }
         return redirect()->route('rsc');
-
     }
-
-
 }
 
 

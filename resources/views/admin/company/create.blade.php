@@ -21,19 +21,18 @@
                         <!-- general form elements -->
                         <div class="card card-dark">
                             <div class="card-header">
-                                <h3 class="card-title">Редактирование города</h3>
+                                <h3 class="card-title">Добавление страны</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="{{ route('admin.city.update', $city->id) }}" method="post">
+                            <form action="{{ route('admin.country.store') }}" method="post">
                                 @csrf
-                                @method('patch')
                                 <div class="card-body">
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Название</label>
-                                            <input type="text" value="{{$city->title}}" name="title" class="form-control" placeholder="Enter ...">
+                                            <input type="text" name="title" class="form-control">
                                         </div>
                                     </div>
 

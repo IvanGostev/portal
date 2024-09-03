@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
-        <span class="brand-text font-weight-bold">СИБУР</span>
+        <span class="brand-text font-weight-bold">СИЛОВЫЕ МАШИНЫ</span>
     </a>
 
     <!-- Sidebar -->
@@ -24,10 +24,24 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+{{--                <li class="nav-item">--}}
+{{--                    <a href="{{route('profile.show')}}" class="nav-link">--}}
+{{--                        <p>--}}
+{{--                            Моя компания (редактирование основной информации)--}}
+{{--                        </p>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a href="{{route('status.index')}}" class="nav-link">
                         <p>
-                            Статусы
+                            Классификация (статусы, категории, приложения)
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('procedure.index')}}" class="nav-link">
+                        <p>
+                            Процедуры
                         </p>
                     </a>
                 </li>

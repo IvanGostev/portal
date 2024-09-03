@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin\Category;
 
 
+use App\Exports\SubcategoryExport;
 use App\Http\Controllers\Controller;
+use App\Imports\SubcategoryImport;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubcategoryAdminController extends Controller
 {
@@ -45,8 +48,20 @@ class SubcategoryAdminController extends Controller
         $subcategory->update(['title' => $request->title]);
         return redirect()->route('admin.category.subcategory.index', ['category' => $subcategory->category_id]);
     }
+
     public function destroy(Subcategory $subcategory) : RedirectResponse {
         $subcategory->delete();
         return back();
+    }
+
+    public function import(Request $request, Category $category)
+    {
+        Excel::import(new SubcategoryImport($category->id), $request->file('file'));
+        return back();
+    }
+
+    public function export(Category $category)
+    {
+        return Excel::download(new SubcategoryExport($category->id), 'subcategories.xlsx');
     }
 }
