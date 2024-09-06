@@ -84,6 +84,20 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.provider.index')}}" class="nav-link">
+                        <p>
+                            Поставщики (поставки)
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.moderator.index')}}" class="nav-link">
+                        <p>
+                            Модераторы
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

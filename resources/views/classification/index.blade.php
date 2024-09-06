@@ -12,7 +12,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3">
-
                         <div class="card card-dark card-outline">
                             <div class="card-body box-profile">
                                 <h3 class="profile-username text-center">{{auth()->user()->company_title}}</h3>
@@ -23,24 +22,11 @@
                                         <br>
                                         <a class="float-right text-center">{{translateStatusAll(auth()->user()->status)}}</a>
                                     </li>
-                                    <li class="list-group-item">
-                                        <b>Категорий всего:</b> <a class="float-right">1,322</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Категорий на модерации:</b> <a class="float-right">543</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Категорий принятых:</b> <a class="float-right">13,287</a>
-                                    </li>
-
                                 </ul>
                             </div>
-
                         </div>
-
-
                     </div>
-
+                    =
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header p-2">
@@ -155,19 +141,31 @@
                                                             <td>{{$usc->id}}</td>
                                                             <td>{{$usc->subcategory()->title}}</td>
                                                             <td>
-                                                                <form action="{{route('category.update', $usc->id)}}" method="post">
+                                                                <form action="{{route('category.update', $usc->id)}}"
+                                                                      method="post">
                                                                     @csrf
                                                                     @method('patch')
-                                                                    <select class="form-control" name="type" onchange="$(this).parent('form').submit()">
-                                                                        <option {{$usc->type == 'Производитель' ? 'selected' : ''}} value="Производитель">Производитель</option>
-                                                                        <option {{$usc->type == 'Посредник' ? 'selected' : ''}} value="Посредник">Посредник</option>
-                                                                        <option {{$usc->type == 'Торговый дом' ? 'selected' : ''}} value="Торговый дом">Торговый дом</option>
+                                                                    <select class="form-control" name="type"
+                                                                            onchange="$(this).parent('form').submit()">
+                                                                        <option
+                                                                            {{$usc->type == 'Производитель' ? 'selected' : ''}} value="Производитель">
+                                                                            Производитель
+                                                                        </option>
+                                                                        <option
+                                                                            {{$usc->type == 'Посредник' ? 'selected' : ''}} value="Посредник">
+                                                                            Посредник
+                                                                        </option>
+                                                                        <option
+                                                                            {{$usc->type == 'Торговый дом' ? 'selected' : ''}} value="Торговый дом">
+                                                                            Торговый дом
+                                                                        </option>
                                                                     </select>
                                                                 </form>
                                                             </td>
                                                             <td>{{translateStatus($usc->status)}}</td>
                                                             <td>
-                                                                <form action="{{route('category.destroy', $usc->id)}}" method="post">
+                                                                <form action="{{route('category.destroy', $usc->id)}}"
+                                                                      method="post">
                                                                     @csrf
                                                                     <button class="btn btn-dark">Удалить</button>
                                                                 </form>
@@ -236,7 +234,8 @@
                                                                             <select name="annex_type_id"
                                                                                     class="form-control">
                                                                                 @foreach($types as $type)
-                                                                                    <option value="{{$type->id}}">{{$type->title}}</option>
+                                                                                    <option
+                                                                                        value="{{$type->id}}">{{$type->title}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
@@ -285,7 +284,8 @@
                                                             </td>
                                                             <td>
 
-                                                                <form action="{{route('file.destroy', $file->id)}}" method="post">
+                                                                <form action="{{route('file.destroy', $file->id)}}"
+                                                                      method="post">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <button class="btn btn-dark">Удалить</button>

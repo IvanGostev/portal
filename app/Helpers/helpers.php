@@ -33,3 +33,20 @@ function translateStatus($status)
     }
 
 }
+
+function translateRole($role)
+{
+    switch ($role) {
+        case 'admin':
+            return 'Админ';
+        case 'document':
+            return 'Требуется дополнительный пакет документов';
+        case 'audit':
+            return 'Аудит';
+        case  'approved':
+            return 'Классификация по категории пройдена';
+        case  'cancelled':
+            return 'Классификация по категории не пройдена';
+    }
+
+}

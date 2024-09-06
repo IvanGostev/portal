@@ -48,7 +48,6 @@ class RegisterSessionController extends Controller
             $selectedSubcategories = [];
         }
 
-
         return view('auth.register', compact('countries', 'cities', 'currencies', 'languages', 'categories', 'annexTypes', 'selectedSubcategories'));
     }
 

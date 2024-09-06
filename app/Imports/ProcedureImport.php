@@ -23,8 +23,8 @@ class ProcedureImport implements ToModel
             'status' => $row[2],
             'procurement_method' => $row[3],
             'type' => $row[4],
-            'start' => Carbon::parse($row[5])->format('Y-m-d'),
-            'finish' => Carbon::parse($row[6])->format('Y-m-d'),
+            'start' => gmdate('Y-m-d', (($row[5] - 25569) * 86400)),
+            'finish' => gmdate('Y-m-d', (($row[6] - 25569) * 86400)),
             'url' => $row[7]
         ]);
     }

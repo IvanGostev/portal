@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('role')->default('provider');
 
 
-            $table->foreignIdFor(Country::class)->constrained();
+            $table->foreignIdFor(Country::class)->nullable()->constrained();
             $table->string('inn')->unique()->nullable();
             $table->string('kpp')->unique()->nullable();
             $table->string('ogrn')->nullable();
