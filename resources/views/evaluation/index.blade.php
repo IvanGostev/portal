@@ -8,11 +8,32 @@
                         <br>
                         <div class="card" style="font-size: 14px">
                             <div class="card-header">
-                                <h3 class="card-title">Мои поставки</h3>
+                                <h3 class="card-title">Моя оценка</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <form class="row" >
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div id="chart1">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="chart2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div id="chart3">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="chart4">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form class="row">
                                     <div class="col-sm-12 col-md-2">
                                         <div>
                                             <div class="fw-bold fs-6">Категория</div>
@@ -88,7 +109,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-2">
                                         <div>
-                                            <div class="fw-bold fs-6">Адрес грузополучателя </div>
+                                            <div class="fw-bold fs-6">Адрес грузополучателя</div>
                                             <div class="fht-cell">
                                                 <div class="filter-control">
                                                     <input type="text" value="{{request()['address'] ?? ''}}"
@@ -130,11 +151,11 @@
                                                         <option value="no">Без</option>
                                                         <option
                                                             {{request()['status'] == 'delivery_date' ? 'selected' : '' }}  value="delivery_date">
-                                                             Плановая дата поставки
+                                                            Плановая дата поставки
                                                         </option>
                                                         <option
                                                             {{request()['status'] == 'new_delivery_date' ? 'selected' : '' }} value="new_delivery_date">
-                                                             Новая плановая дата поставки
+                                                            Новая плановая дата поставки
                                                         </option>
                                                     </select>
                                                 </div>
@@ -150,7 +171,7 @@
                                     </div>
                                 </form>
                                 <br>
-                                <table class="table table-bordered" >
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
                                         <th>Категория</th>
@@ -164,7 +185,7 @@
                                         <th>Адрес грузополучателя</th>
                                         <th>Плановая дата поставки</th>
                                         <th>Новая плановая дата поставки</th>
-                                        <th>Удалить</th>
+                                        <th>Оценка</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -180,19 +201,12 @@
                                             <td>{{$shipment->unit}}</td>
                                             <td>{{$shipment->address}}</td>
                                             <td>{{$shipment->delivery_date}}</td>
+                                            <td>{{$shipment->new_delivery_date}}</td>
                                             <td>
-                                                <form action="{{route('shipment.update', $shipment->id)}}" method="post">
-                                                    @csrf
-                                                    @method('patch')
-                                                    <input type="date" name="date" class="form-control" value="{{$shipment->new_delivery_date}}" onchange="$(this).parent('form').submit()">
-                                                </form>
-                                            </td></td>
-                                            <td>
-                                                <form action="{{route('admin.provider.shipment.destroy', $shipment->id)}}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-dark" type="submit">Удалить</button>
-                                                </form>
+                                                @if($shipment->evaluation())
+                                                    <a class="btn btn-dark"
+                                                       href="{{route('evaluation.show', $shipment->id)}}">Оценка</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -210,4 +224,5 @@
             </div><!-- /.container-fluid -->
         </section>
     </div>
+
 @endsection

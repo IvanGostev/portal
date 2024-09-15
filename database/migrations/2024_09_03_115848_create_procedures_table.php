@@ -14,6 +14,7 @@ return new class extends Migration
     {
         Schema::create('procedures', function (Blueprint $table) {
             $table->id();
+            $table->string('number');
             $table->string('title');
             $table->foreignIdFor(Subcategory::class)->constrained();
             $table->string('status');

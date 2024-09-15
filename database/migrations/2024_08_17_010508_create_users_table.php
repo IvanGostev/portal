@@ -50,6 +50,7 @@ return new class extends Migration
             $table->foreignId('legal_country_id')->nullable()->constrained('countries');
             $table->foreignId('legal_city_id')->nullable()->constrained('cities');
             $table->string('legal_index')->nullable();
+            $table->string('legal_subject')->nullable();
             $table->string('legal_street')->nullable();
             $table->string('legal_home_number')->nullable();
             $table->string('legal_room_number')->nullable();

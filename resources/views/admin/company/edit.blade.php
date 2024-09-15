@@ -24,7 +24,8 @@
                                         <form action="{{route('admin.company.statusUpdate', $user->id)}}" method="post">
                                             @csrf
                                             @method('patch')
-                                            <select name="status" class="form-control"  onchange="$(this).parent('form').submit()">
+                                            <select name="status" class="form-control"
+                                                    onchange="$(this).parent('form').submit()">
                                                 <option
                                                     {{$user->status == 'moderation' ? 'selected' : 0}} value="moderation">{{translateStatusAll('moderation')}}</option>
                                                 <option
@@ -58,8 +59,8 @@
                                     </li>
                                     <li class="nav-item"><a class="nav-link" href="#timeline"
                                                             data-toggle="tab">Приложения</a></li>
-                                    {{--                                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Личные--}}
-                                    {{--                                            данные</a></li>--}}
+                                    <li class="nav-item"><a class="nav-link" href="#company" data-toggle="tab">
+                                            Данные</a></li>
                                 </ul>
                             </div>
                             <div class="card-body">
@@ -148,10 +149,11 @@
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>№</th>
                                                         <th>Название</th>
                                                         <th>Тип</th>
                                                         <th>Статус</th>
+                                                        <th>Дата подачи</th>
                                                         <th>Удалить</th>
                                                     </tr>
                                                     </thead>
@@ -163,9 +165,11 @@
                                                             <td>
                                                                 {{$usc->type}}
                                                             </td>
+
                                                             <td>
-                                                                <form action="{{route('admin.company.statusCategoryUpdate', $usc->id)}}"
-                                                                      method="post">
+                                                                <form
+                                                                    action="{{route('admin.company.statusCategoryUpdate', $usc->id)}}"
+                                                                    method="post">
                                                                     @csrf
                                                                     @method('patch')
                                                                     <select class="form-control" name="status"
@@ -193,6 +197,7 @@
                                                                     </select>
                                                                 </form>
                                                             </td>
+                                                            <td>{{$usc->created_at}}</td>
                                                             <td>
                                                                 <form action="{{route('category.destroy', $usc->id)}}"
                                                                       method="post">
@@ -230,7 +235,7 @@
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>№</th>
                                                         <th>Тип</th>
                                                         <th>Описание</th>
                                                         <th>Продолжительность</th>
@@ -267,18 +272,309 @@
 
                                         </div>
                                     </div>
+                                    <div class="tab-pane" id="company">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Общая информация о компании</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Страна:</label>
+                                                            <input disabled class="form-control"
+                                                                   value="{{$user->country()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ИНН:</label>
+                                                            <input disabled type="text" name="inn"
+                                                                   value="{{$user->inn}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>КПП:</label>
+                                                            <input disabled type="text" name="kpp"
+                                                                   value="{{$user->kpp}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ОГРН:</label>
+                                                            <input disabled type="text" name="ogrn"
+                                                                   value="{{$user->ogrn}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>ОКПО:</label>
+                                                            <input disabled type="text" name="okpo"
+                                                                   value="{{$user->okpo}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Дата
+                                                                регистрации:</label>
+                                                            <input disabled type="date" name="date_registration"
+                                                                   value="{{$user->date_registration}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Название:</label>
+                                                            <input disabled type="text" name="company_title"
+                                                                   value="{{$user->company_title}}"
+                                                                   class=" form-control" required>
+                                                        </div>
 
+                                                        <div class="form-group">
+                                                            <label>Сокращённое
+                                                                название:</label>
+                                                            <input disabled type="text" name="company_abbreviated_title"
+                                                                   value="{{$user->company_abbreviated_title}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Размер уставного капитала:</label>
+                                                            <input disabled type="number" name="initial_capital"
+                                                                   value="{{$user->initial_capital}}"
+                                                                   class=" form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Телефон
+                                                                общий:</label>
+                                                            <input disabled type="phone" name="shared_phone"
+                                                                   value="{{$user->shared_phone}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Email общий:</label>
+                                                            <input disabled type="email" name="shared_email"
+                                                                   value="{{$user->shared_email}}"
+                                                                   class=" form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Сайт:</label>
+                                                            <input disabled type="text" name="site"
+                                                                   value="{{$user->site}}"
+                                                                   class=" form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
 
+                                                        <div class="form-group">
+                                                            <h5>Почтовый адрес</h5>
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <label>Совпадает
+                                                                с юридическим</label>
+                                                            <input disabled type="text"
+                                                                   value="{{$user->mail_coincides_legal ? "ДА" : 'НЕТ'}}"
+                                                                   class="form-control">
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Почтовый ящик:</label>
+                                                            <input disabled type="text" name="mailbox"
+                                                                   value="{{$user->mailbox}}"
+                                                                   class=" form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Страна:</label>
+                                                            <input disabled class="form-control" type="text"
+                                                                   value="{{$user->countryMail()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Город
+                                                                (поселок/село):</label>
+                                                            <input disabled type="text" class="form-control"
+                                                                   value="{{$user->cityMail()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Индекс:</label>
+                                                            <input disabled type="text" name="mail_index"
+                                                                   value="{{$user->mail_index}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Улица:</label>
+                                                            <input disabled type="text" name="mail_street"
+                                                                   value="{{$user->mail_street}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Номер дома:</label>
+                                                            <input disabled type="text" name="mail_home_number"
+                                                                   value="{{$user->mail_home_number}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Номер помещения:</label>
+                                                            <input disabled type="text" name="mail_room_number"
+                                                                   value="{{$user->mail_room_number}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <h5>Юридический адрес</h5>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Страна:</label>
+                                                            <input disabled type="text" class="form-control"
+                                                                   value="{{$user->countryLegal()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Город
+                                                                (поселок/село):</label>
+                                                            <input disabled class="form-control" type="text"
+                                                                   value="{{$user->cityLegal()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Индекс:</label>
+                                                            <input disabled type="text" name="legal_index"
+                                                                   value="{{$user->legal_index}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Субъект:</label>
+                                                            <input disabled type="text" name="legal_subject"
+                                                                   value="{{$user->legal_subject}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Улица:</label>
+                                                            <input disabled type="text" name="legal_street"
+                                                                   value="{{$user->legal_street}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Номер дома:</label>
+                                                            <input disabled type="text" name="legal_home_number"
+                                                                   value="{{$user->legal_home_number}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Номер помещения:</label>
+                                                            <input disabled type="text" name="legal_room_number"
+                                                                   value="{{$user->legal_room_number}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+
+                                                        <div class="form-group">
+                                                            <h5>Банковские данные</h5>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Страна:</label>
+                                                            <input disabled class="form-control" type="text"
+                                                                   value="{{$user->countryBank()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>БИК или SWIFT
+                                                                банка:</label>
+                                                            <input disabled type="text" name="bank_bik_or_swift"
+                                                                   value="{{$user->bank_bik_or_swift}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Номер расчётного
+                                                                счёта:</label>
+                                                            <input disabled type="text" name="bank_current_account"
+                                                                   value="{{$user->bank_current_account}}"
+                                                                   class="form-control" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Валюта счёта:</label>
+                                                            <input disabled class="form-control" type="text"
+                                                                   value="{{$user->currency()->title}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Название банка:</label>
+                                                            <input disabled type="text" name="bank_name"
+                                                                   value="{{$user->bank_name}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Корр. счёт:</label>
+                                                            <input disabled type="text" name="bank_corporate_account"
+                                                                   value="{{$user->bank_corporate_account}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Адрес банка:</label>
+                                                            <input disabled type="text" name="bank_address"
+                                                                   value="{{$user->bank_address}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Согласен работать по ЭДО</label>
+                                                            <input disabled type="text"
+                                                                   value="{{$user->work_edo ? "ДА" : 'НЕТ'}}"
+                                                                   class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Фамилия:</label>
+                                                            <input disabled type="text" name="last_name" class="form-control"
+                                                                   required
+                                                                   value="{{$user->last_name}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Имя:</label>
+                                                            <input disabled type="text" name="name" class="form-control" required
+                                                                   value="{{$user->name}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Отчество:</label>
+                                                            <input disabled type="text" name="patronymic" class="form-control"
+                                                                   required
+                                                                   value="{{$user->patronymic}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Должность:</label>
+                                                            <input disabled type="text" name="position" class="form-control"
+                                                                   required
+                                                                   value="{{$user->position}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>ИНН Физ. Лица:</label>
+                                                            <input disabled type="text" name="inn_physical_person"
+                                                                   class="form-control" required
+                                                                   value="{{$user->inn_physical_person}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>№ телефона: /
+                                                                Внутренний
+                                                                номер:</label>
+                                                            <input disabled type="phone" name="internal_phone"
+                                                                   class="form-control"
+                                                                   required
+                                                                   value="{{$user->last_name}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>E-mail:</label>
+                                                            <input disabled type="email" name="email" class="form-control"
+                                                                   required
+                                                                   value="{{$user->email}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
-
                 </div>
-            </div><!-- /.container-fluid -->
+            </div>
         </section>
-        <!-- /.content -->
     </div>
 @endsection

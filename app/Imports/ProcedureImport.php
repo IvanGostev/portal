@@ -18,14 +18,15 @@ class ProcedureImport implements ToModel
     public function model(array $row)
     {
         return new Procedure([
-            'title' => $row[0],
-            'subcategory_id' => Subcategory::where('title', $row[1])->first()->id,
-            'status' => $row[2],
-            'procurement_method' => $row[3],
-            'type' => $row[4],
-            'start' => gmdate('Y-m-d', (($row[5] - 25569) * 86400)),
-            'finish' => gmdate('Y-m-d', (($row[6] - 25569) * 86400)),
-            'url' => $row[7]
+            'number' => $row[0],
+            'title' => $row[1],
+            'subcategory_id' => Subcategory::where('title', $row[2])->first()->id,
+            'status' => $row[3],
+            'procurement_method' => $row[4],
+            'type' => $row[5],
+            'start' => gmdate('Y-m-d', (($row[6] - 25569) * 86400)),
+            'finish' => gmdate('Y-m-d', (($row[7] - 25569) * 86400)),
+            'url' => $row[8]
         ]);
     }
 }

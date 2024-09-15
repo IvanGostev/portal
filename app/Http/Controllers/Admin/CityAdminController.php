@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Exports\CategoryExport;
+use App\Exports\CityExport;
 use App\Http\Controllers\Controller;
+use App\Imports\CategoryImport;
+use App\Imports\CityImport;
 use App\Models\City;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CityAdminController extends Controller
 {
@@ -48,5 +53,15 @@ class CityAdminController extends Controller
     public function destroy(City $city) : RedirectResponse {
         $city->delete();
         return redirect()->route('admin.city.index');
+    }
+    public function import(Request $request)
+    {
+        Excel::import(new CityImport(), $request->file('file'));
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new CityExport(), 'cities.xlsx');
     }
 }

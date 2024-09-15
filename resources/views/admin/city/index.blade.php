@@ -20,6 +20,24 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <form class="row" action="{{route('admin.city.import')}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="col-6">
+                                                <input type="file" name="file" class="form-control-file">
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="submit" name="import" value="true" class="btn btn-dark btn-block">Импорт</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="{{route('admin.city.export')}}" class="btn btn-dark btn-block">Экспорт</a>
+                                    </div>
+                                </div>
+                                <br>
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>

@@ -13,4 +13,10 @@ class Shipment extends Model
     public function subcategory() {
         return Subcategory::where('id', $this->subcategory_id)->first();
     }
+    public function user() {
+        return User::where('id', $this->user_id)->first();
+    }
+    public function evaluation() {
+        return Evaluation::where('shipment_id', $this->id)->first();
+    }
 }

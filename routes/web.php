@@ -8,19 +8,24 @@ use App\Http\Controllers\Admin\CityAdminController;
 use App\Http\Controllers\Admin\CompanyAdminController;
 use App\Http\Controllers\Admin\CountryAdminController;
 use App\Http\Controllers\Admin\CurrencyAdminController;
+use App\Http\Controllers\Admin\EvaluationAdminController;
 use App\Http\Controllers\Admin\LanguageAdminController;
 use App\Http\Controllers\Admin\ModeratorAdminController;
 use App\Http\Controllers\Admin\ProcedureAdminController;
 use App\Http\Controllers\Admin\ProviderAdminController;
 use App\Http\Controllers\Admin\ShipmentAdminController;
+use App\Http\Controllers\Admin\ShipmentCompletedAdminController;
 use App\Http\Controllers\Classification\CategoryClassificationController;
 use App\Http\Controllers\Classification\FileClassificationController;
 use App\Http\Controllers\Classification\MessageClassificationController;
 use App\Http\Controllers\Classification\ProcedureController;
 use App\Http\Controllers\Classification\StatusClassificationController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\ProviderMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +36,13 @@ Auth::routes();
 Route::get('/all-register', [App\Http\Controllers\Auth\RegisterSessionController::class, 'index'])->name('rsc');
 Route::post('/all-register', [App\Http\Controllers\Auth\RegisterSessionController::class, 'updateOrRegister'])->name('rsc');
 
+Route::controller(MainController::class)->group(function () {
+    Route::get('/terms-of-cooperation', 'termsOfCooperation')->name('termsOfCooperation');
+    Route::get('/consent-to-the-processing-and-storage-of-personal-data', 'storageOfPersonalData')->name('storageOfPersonalData');
+});
 
-Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->group(function () {
+
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::controller(CategoryAdminController::class)
         ->prefix('categories')
         ->name('category.')
@@ -84,6 +94,9 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
             Route::get('/edit/{city}', 'edit')->name('edit');
             Route::patch('/{city}', 'update')->name('update');
             Route::delete('/{city}', 'destroy')->name('destroy');
+
+            Route::post('/import', 'import')->name('import');
+            Route::get('/export', 'export')->name('export');
         });
     Route::controller(CurrencyAdminController::class)
         ->prefix('currencies')
@@ -127,6 +140,21 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
             Route::patch('/{user}/status', 'statusUpdate')->name('statusUpdate');
             Route::patch('/{usc}/category', 'statusCategoryUpdate')->name('statusCategoryUpdate');
         });
+    Route::controller(ShipmentCompletedAdminController::class)
+        ->prefix('shipments')
+        ->name('shipment.')
+        ->group(function () {
+            Route::get('/completed', 'index')->name('index');
+        });
+    Route::controller(EvaluationAdminController::class)
+        ->prefix('evaluations')
+        ->name('evaluation.')
+        ->group(function () {
+            Route::get('/{shipment}/create', 'create')->name('create');
+            Route::post('/{shipment}/store', 'store')->name('store');
+            Route::get('/{evaluation}/edit', 'edit')->name('edit');
+            Route::post('/{evaluation}/update', 'update')->name('update');
+        });
     Route::controller(ProcedureAdminController::class)
         ->prefix('procedures')
         ->name('procedure.')
@@ -163,7 +191,7 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
             Route::patch('/{user}', 'update')->name('update');
         });
 });
-    Route::middleware('auth')->group(
+    Route::middleware('auth')->middleware(ProviderMiddleware::class)->group(
 
         function () {
         Route::controller(ProfileController::class)
@@ -217,4 +245,11 @@ Route::prefix('admin')->middleware(AdminMiddleware::class)->name('admin.')->grou
             ->group(function () {
                 Route::get('/', 'index')->name('index');
             });
+            Route::controller(EvaluationController::class)
+                ->prefix('evaluation')
+                ->name('evaluation.')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/{shipment}/show', 'show')->name('show');
+                });
     });

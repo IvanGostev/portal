@@ -36,7 +36,7 @@
             </div>
 
             <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-dark">
+            <nav class="main-header navbar navbar-expand navbar-dark justify-content-between">
                 <!-- Left navbar links -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -44,7 +44,16 @@
                     </li>
                 </ul>
 
-                <!-- Right navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit"
+                                    class="btn btn-outline-light fw-normal">Выйти
+                            </button>
+                        </form>
+                    </li>
+                </ul>
 
             </nav>
             <!-- /.navbar -->
@@ -73,10 +82,10 @@
 
             <!-- Main Footer -->
             <footer class="main-footer" style="position: relative">
-                <strong>Copyright &copy; 2024 <a href="/">СИЛОВЫЕ МАШИНЫ</a>.</strong>
-                All rights reserved.
+                <strong>Авторское право &copy; 2024 <a href="/">СИЛОВЫЕ МАШИНЫ</a>.</strong>
+                Все права защищены.
                 <div class="float-right d-none d-sm-inline-block">
-                    <b>Version</b> 1.0.0
+                    <b>Версия</b> 1.0.0
                 </div>
             </footer>
         </div>

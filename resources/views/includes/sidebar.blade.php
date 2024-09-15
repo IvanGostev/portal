@@ -52,6 +52,13 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('evaluation.index')}}" class="nav-link">
+                        <p>
+                            Моя оценка
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

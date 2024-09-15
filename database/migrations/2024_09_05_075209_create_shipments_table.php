@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
+            $table->string('number');
+            $table->longText('description')->nullable();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Subcategory::class)->constrained();
             $table->string('contract_number');
@@ -27,6 +29,8 @@ return new class extends Migration
             $table->string('address');
             $table->date('delivery_date');
             $table->date('new_delivery_date')->nullable();
+
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

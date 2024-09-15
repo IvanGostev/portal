@@ -38,7 +38,7 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
+    <nav class="main-header navbar navbar-expand navbar-dark justify-content-between">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -47,6 +47,16 @@
         </ul>
 
         <!-- Right navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit"
+                            class="btn btn-outline-light fw-normal">Выйти
+                    </button>
+                </form>
+            </li>
+        </ul>
 
     </nav>
     <!-- /.navbar -->
@@ -75,10 +85,10 @@
 
     <!-- Main Footer -->
     <footer class="main-footer" style="position: relative">
-        <strong>Copyright &copy; 2024 <a href="/">СИЛОВЫЕ МАШИНЫ</a>.</strong>
-        All rights reserved.
+        <strong>Авторское право &copy; 2024 <a href="/">СИЛОВЫЕ МАШИНЫ</a>.</strong>
+        Все права защищены.
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 1.0.0
+            <b>Версия</b> 1.0.0
         </div>
     </footer>
 </div>
@@ -122,6 +132,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 <script src="{{asset('admin/js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function () {
         $('#summernote').summernote({
@@ -197,6 +208,144 @@
     })
 
 </script>
+<script
+    type="text/javascript"
+    src="https://code.jquery.com/jquery-1.8.3.js"
+></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jqplot/1.0.4/jquery.jqplot.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jqplot/1.0.4/jquery.jqplot.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jqplot/1.0.4/plugins/jqplot.donutRenderer.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jqplot/1.0.4/plugins/jqplot.pieRenderer.min.js"></script>
+@if(isset($speeds))
+<script type='text/javascript'>
+    let data = [
+        ['5', {{$speeds['5']}}],
+        ['4', {{$speeds['4']}}],
+        ['3',  {{$speeds['3']}}],
+        ['2',  {{$speeds['2']}}],
+        ['1', {{$speeds['1']}}],
+    ];
+    let plot1 = jQuery.jqplot ('chart1', [data],
+        {
+            seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer,
+                rendererOptions: {
+                    showDataLabels: true,
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                border: '0px',
+                fontSize: '16px',
+                rendererOptions: {
+                    numberRows: '12',
+                    numberColumns: '8'
+                }
+            },
+            title: {
+                text: 'Оперативность доставки'
+            }
+        }
+    );
 
+
+
+    data = [
+        ['5', {{$qualities['5']}}],
+        ['4', {{$qualities['4']}}],
+        ['3',  {{$qualities['3']}}],
+        ['2',  {{$qualities['2']}}],
+        ['1', {{$qualities['1']}}],
+    ];
+    let plot2 = jQuery.jqplot ('chart2', [data],
+        {
+            seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer,
+                rendererOptions: {
+                    showDataLabels: true,
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                border: '0px',
+                fontSize: '16px',
+                rendererOptions: {
+                    numberRows: '12',
+                    numberColumns: '8'
+                }
+            },
+            title: {
+                text: 'Качество товаров/материалов'
+            }
+        }
+    );
+    data = [
+        ['5', {{$conditions['5']}}],
+        ['4', {{$conditions['4']}}],
+        ['3',  {{$conditions['3']}}],
+        ['2',  {{$conditions['2']}}],
+        ['1', {{$conditions['1']}}],
+    ];
+    let plot3 = jQuery.jqplot ('chart3', [data],
+        {
+            seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer,
+                rendererOptions: {
+                    showDataLabels: true,
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                border: '0px',
+                fontSize: '16px',
+                rendererOptions: {
+                    numberRows: '12',
+                    numberColumns: '8'
+                }
+            },
+            title: {
+                text: 'Соблюдение условий контракта'
+            }
+        }
+    );
+    data = [
+        ['5', {{$interactions['5']}}],
+        ['4', {{$interactions['4']}}],
+        ['3',  {{$interactions['3']}}],
+        ['2',  {{$interactions['2']}}],
+        ['1', {{$interactions['1']}}],
+    ];
+    let plot4 = jQuery.jqplot ('chart4', [data],
+        {
+            seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer,
+                rendererOptions: {
+                    showDataLabels: true,
+                }
+            },
+            legend: {
+                show: true,
+                location: 's',
+                border: '0px',
+                fontSize: '16px',
+                rendererOptions: {
+                    numberRows: '12',
+                    numberColumns: '8'
+                }
+            },
+            title: {
+                text: 'Уровень взаимодействия'
+            }
+        }
+    );
+</script>
+@endif
 </body>
 </html>

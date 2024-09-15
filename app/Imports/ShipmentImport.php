@@ -24,16 +24,18 @@ class ShipmentImport implements ToModel
     {
         return new Shipment([
             'user_id' => $this->user->id,
-            'subcategory_id' => Subcategory::where('title', $row[0])->first()->id,
-            'contract_number' => $row[1],
-            'order_number' => $row[2],
-            'spp_element' => $row[3],
-            'code_num' => $row[4],
-            'title_num' => $row[5],
-            'count' => $row[6],
-            'unit' => $row[7],
-            'address' => $row[8],
-            'delivery_date' =>  gmdate('Y-m-d', (($row[9] - 25569) * 86400))
+            'number' => $row[0],
+            'description' => $row[1],
+            'subcategory_id' => Subcategory::where('title', $row[2])->first()->id,
+            'contract_number' => $row[3],
+            'order_number' => $row[4],
+            'spp_element' => $row[5],
+            'code_num' => $row[6],
+            'title_num' => $row[7],
+            'count' => $row[8],
+            'unit' => $row[9],
+            'address' => $row[10],
+            'delivery_date' =>  gmdate('Y-m-d', (($row[11] - 25569) * 86400))
         ]);
     }
 }

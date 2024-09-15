@@ -18,6 +18,27 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <form class="row">
+                                    <div class="col-sm-12 col-md-4">
+                                        <div>
+                                            <div class="fw-bold fs-6">Название поставщика (компании)</div>
+                                            <div class="fht-cell">
+                                                <div class="filter-control">
+                                                    <input type="text" value="{{request()['title'] ?? ''}}"
+                                                           name="title" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 gap-5">
+                                        <button class="btn btn-dark mt-3" tabindex="0"
+                                                aria-controls="example1" type="submit"><span>Поиск</span></button>
+                                        <a href="{{route('admin.shipment.index')}}" class="btn btn-secondary mt-3"
+                                           tabindex="0"
+                                           aria-controls="example1" type="submit"><span>Сбросить</span></a>
+                                    </div>
+                                </form>
+                                <br>
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>

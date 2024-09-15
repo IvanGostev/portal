@@ -26,7 +26,6 @@
                             </div>
                         </div>
                     </div>
-                    =
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header p-2">
@@ -128,10 +127,11 @@
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th>№</th>
                                                         <th>Название</th>
                                                         <th>Тип</th>
                                                         <th>Статус</th>
+                                                        <th>Дата подачи</th>
                                                         <th>Удалить</th>
                                                     </tr>
                                                     </thead>
@@ -163,6 +163,7 @@
                                                                 </form>
                                                             </td>
                                                             <td>{{translateStatus($usc->status)}}</td>
+                                                            <td>{{$usc->created_at}}</td>
                                                             <td>
                                                                 <form action="{{route('category.destroy', $usc->id)}}"
                                                                       method="post">
@@ -180,7 +181,6 @@
                                                                 </td>
                                                             </tr>
                                                         @endif
-
                                                     @endforeach
 
 
@@ -257,7 +257,6 @@
                                                 <br>
                                                 <h3 class="card-title">Приложения</h3>
                                             </div>
-
                                             <div class="card-body">
                                                 <table class="table table-bordered table-hover">
                                                     <thead>
@@ -296,11 +295,8 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-
                                         </div>
                                     </div>
-
-
                                 </div>
 
                             </div>

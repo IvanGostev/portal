@@ -92,6 +92,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('admin.shipment.index')}}" class="nav-link">
+                        <p>
+                            Завершенные поставки
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('admin.moderator.index')}}" class="nav-link">
                         <p>
                             Модераторы

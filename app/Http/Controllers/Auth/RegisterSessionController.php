@@ -153,6 +153,7 @@ class RegisterSessionController extends Controller
                 DB::commit();
                 return redirect('/');
             } catch (Exception $exception) {
+                dd($exception->getMessage());
                 DB::rollBack();
             }
         }

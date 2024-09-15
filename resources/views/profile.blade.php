@@ -196,6 +196,12 @@
                                                        class="form-control" required>
                                             </div>
                                             <div class="form-group">
+                                                <label><span class="text-red">* </span>Субъект:</label>
+                                                <input type="text" name="legal_subject"
+                                                       value="{{auth()->user()->legal_subject}}"
+                                                       class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
                                                 <label><span class="text-red">* </span>Улица:</label>
                                                 <input type="text" name="legal_street"
                                                        value="{{auth()->user()->legal_street}}"

@@ -247,6 +247,12 @@
                                                                class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label><span class="text-red">* </span>Субъект:</label>
+                                                        <input type="text" name="legal_subject"
+                                                               value="{{request()->session()->get('legal_subject')[0] ?? ""}}"
+                                                               class="form-control" required>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label><span class="text-red">* </span>Улица:</label>
                                                         <input type="text" name="legal_street"
                                                                value="{{request()->session()->get('legal_street')[0] ?? ""}}"
@@ -640,9 +646,9 @@
 
                                 <div class="col-md-6 offset-md-0">
                                     <div class="form-check">
-                                        <a href="/" class="link">Условия сотрудничества</a>
+                                        <a href="{{route('termsOfCooperation')}}" class="link">Условия сотрудничества</a>
                                         <br>
-                                        <a href="/" class="link">Согласие на обработку и хранение персональных
+                                        <a href="{{route('storageOfPersonalData')}}" class="link">Согласие на обработку и хранение персональных
                                             данных</a>
                                         <br>
                                         <input required
