@@ -12,7 +12,7 @@
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Поиск" >
+                <input class="form-control form-control-sidebar" type="search" placeholder="Поиск">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>
@@ -26,14 +26,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
-                    <li class="nav-item">
-                        <a href="{{route('admin.category.index')}}" class="nav-link">
+                <li class="nav-item">
+                    <a href="{{route('admin.category.index')}}" class="nav-link">
 
-                            <p>
-                                Категории/Подкатегории
-                            </p>
-                        </a>
-                    </li>
+                        <p>
+                            Категории/Подкатегории
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('admin.country.index')}}" class="nav-link">
 
@@ -56,13 +56,13 @@
                         </p>
                     </a>
                 </li>
-{{--                <li class="nav-item">--}}
-{{--                    <a href="{{route('admin.language.index')}}" class="nav-link">--}}
-{{--                        <p>--}}
-{{--                            Языки--}}
-{{--                        </p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                {{--                <li class="nav-item">--}}
+                {{--                    <a href="{{route('admin.language.index')}}" class="nav-link">--}}
+                {{--                        <p>--}}
+                {{--                            Языки--}}
+                {{--                        </p>--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
                 <li class="nav-item">
                     <a href="{{route('admin.annex.type.index')}}" class="nav-link">
                         <p>
@@ -85,16 +85,23 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.provider.index')}}" class="nav-link">
+                    <a href="{{route('admin.shipment.index')}}" class="nav-link">
                         <p>
-                            Поставщики (поставки)
+                             Поставки
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('admin.shipment.index')}}" class="nav-link">
+                    <a href="{{route('admin.shipment.completed')}}" class="nav-link">
                         <p>
                             Завершенные поставки
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.evaluation.index')}}" class="nav-link">
+                        <p>
+                            Оценки
                         </p>
                     </a>
                 </li>

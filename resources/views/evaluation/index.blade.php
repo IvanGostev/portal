@@ -13,22 +13,136 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-6">
-                                        <div id="chart1">
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[1])}}</h3>
+                                                <p>Первый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div id="chart2">
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[2])}}</h3>
+                                                <p>Второй параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div id="chart3">
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[3])}}</h3>
+                                                <p>Третий параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div id="chart4">
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[4])}}</h3>
+                                                <p>Четвертый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[5])}}</h3>
+                                                <p>Пятый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[6])}}</h3>
+                                                <p>Шестой параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[7])}}</h3>
+                                                <p>Седьмой параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[8])}}</h3>
+                                                <p>Восьмой параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[9])}}</h3>
+                                                <p>Девятый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[10])}}</h3>
+                                                <p>Десятый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[11])}}</h3>
+                                                <p>Одиннадцатый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-6">
+                                        <div class="small-box bg-dark">
+                                            <div class="inner">
+                                                <h3>{{getEv($evShow[12])}}</h3>
+                                                <p>Двенадцатый параметр</p>
+                                            </div>
+                                            <div class="icon">
+                                                <i class="ion ion-bag"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +299,6 @@
                                         <th>Адрес грузополучателя</th>
                                         <th>Плановая дата поставки</th>
                                         <th>Новая плановая дата поставки</th>
-                                        <th>Оценка</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -202,12 +315,6 @@
                                             <td>{{$shipment->address}}</td>
                                             <td>{{$shipment->delivery_date}}</td>
                                             <td>{{$shipment->new_delivery_date}}</td>
-                                            <td>
-                                                @if($shipment->evaluation())
-                                                    <a class="btn btn-dark"
-                                                       href="{{route('evaluation.show', $shipment->id)}}">Оценка</a>
-                                                @endif
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

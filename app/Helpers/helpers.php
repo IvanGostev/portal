@@ -48,5 +48,14 @@ function translateRole($role)
         case  'cancelled':
             return 'Классификация по категории не пройдена';
     }
-
+    function getEv($data)
+    {
+        $count = 0;
+        $sum = 0;
+        foreach ($data as $key => $item) {
+            $count += $item;
+            $sum += ($key * $item);
+        }
+        return $sum / $count;
+    }
 }

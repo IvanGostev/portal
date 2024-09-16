@@ -42,7 +42,7 @@ Route::controller(MainController::class)->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware([AdminMiddleware::class, 'auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::controller(CategoryAdminController::class)
         ->prefix('categories')
         ->name('category.')
@@ -140,20 +140,23 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::patch('/{user}/status', 'statusUpdate')->name('statusUpdate');
             Route::patch('/{usc}/category', 'statusCategoryUpdate')->name('statusCategoryUpdate');
         });
-    Route::controller(ShipmentCompletedAdminController::class)
-        ->prefix('shipments')
-        ->name('shipment.')
-        ->group(function () {
-            Route::get('/completed', 'index')->name('index');
-        });
+
     Route::controller(EvaluationAdminController::class)
         ->prefix('evaluations')
         ->name('evaluation.')
         ->group(function () {
-            Route::get('/{shipment}/create', 'create')->name('create');
-            Route::post('/{shipment}/store', 'store')->name('store');
-            Route::get('/{evaluation}/edit', 'edit')->name('edit');
-            Route::post('/{evaluation}/update', 'update')->name('update');
+            Route::get('/', 'index')->name('index');
+            Route::post('/import', 'import')->name('import');
+            Route::get('/export', 'export')->name('export');
+        });
+    Route::controller(ShipmentAdminController::class)
+        ->prefix('shipments')
+        ->name('shipment.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/completed', 'completed')->name('completed');
+            Route::post('/import', 'import')->name('import');
+            Route::get('/export', 'export')->name('export');
         });
     Route::controller(ProcedureAdminController::class)
         ->prefix('procedures')
@@ -164,22 +167,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/import', 'import')->name('import');
             Route::get('/export', 'export')->name('export');
         });
-    Route::controller(ProviderAdminController::class)
-        ->prefix('providers')
-        ->name('provider.')
-        ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::controller(ShipmentAdminController::class)
-                ->prefix('shipments')
-                ->name('shipment.')
-                ->group(function () {
-                    Route::get('/{user}', 'index')->name('index');
-                    Route::post('/{user}/import', 'import')->name('import');
-                    Route::get('/{user}/export', 'export')->name('export');
-                    Route::delete('/{shipment}/destroy', 'destroy')->name('destroy');
-                    Route::delete('/{user}/destroyall', 'destroyAll')->name('destroyAll');
-                });
-        });
+
     Route::controller(ModeratorAdminController::class)
         ->prefix('moderators')
         ->name('moderator.')

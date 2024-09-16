@@ -69,4 +69,5 @@ class User extends Authenticatable
     public function currency() {
         return Currency::where('id', $this->currency_id)->first();
     }
+
 }

@@ -16,7 +16,7 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <form class="row" action="{{route('admin.provider.shipment.import', $user->id)}}" method="post" enctype="multipart/form-data">
+                                        <form class="row" action="{{route('admin.shipment.import')}}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-6">
                                                 <input type="file" name="file" class="form-control-file">
@@ -27,14 +27,7 @@
                                         </form>
                                     </div>
                                     <div class="col-lg-2">
-                                        <a href="{{route('admin.provider.shipment.export', $user->id)}}" class="btn btn-dark btn-block">Экспорт</a>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <form method="post" action="{{route('admin.provider.shipment.destroyAll', $user->id)}}">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn btn-dark btn-block">Удалить все</button>
-                                        </form>
+                                        <a href="{{route('admin.shipment.export')}}" class="btn btn-dark btn-block">Экспорт</a>
                                     </div>
                                 </div>
                                 <br>
@@ -56,7 +49,6 @@
                                         <th>Адрес грузополучателя</th>
                                         <th>Плановая дата поставки</th>
                                         <th>Новая плановая дата поставки</th>
-                                        <th>Удалить</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -73,13 +65,6 @@
                                             <td>{{$shipment->address}}</td>
                                             <td>{{$shipment->delivery_date}}</td>
                                             <td>{{$shipment->new_delivery_date}}</td>
-                                            <td>
-                                                <form action="{{route('admin.provider.shipment.destroy', $shipment->id)}}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button class="btn btn-dark" type="submit">Удалить</button>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

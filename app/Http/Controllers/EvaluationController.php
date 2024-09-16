@@ -19,89 +19,118 @@ class EvaluationController extends Controller
 
     public function index(Request $request): View
     {
-        $speeds['1'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-        ->where('evaluations.speed', 1)
-        ->count();
-        $speeds['2'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.speed', 2)
-            ->count();
-        $speeds['3'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.speed', 3)
-            ->count();
-        $speeds['4'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.speed', 4)
-            ->count();
-        $speeds['5'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.speed', 5)
-            ->count();
+        $evShow = [
+            1 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            2 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            3 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            4 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            5 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            6 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            7 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            8 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            9 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            10 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            11 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+            12 => [
+                1 => 0,
+                2 => 0,
+                3 => 0,
+                4 => 0,
+                5 => 0,
+            ],
+        ];
+        $evs = Evaluation::where('user_id', auth()->user()->id)->get();
 
-        $qualities['1'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.quality', 1)
-            ->count();
-        $qualities['2'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.quality', 2)
-            ->count();
-        $qualities['3'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.quality', 3)
-            ->count();
-        $qualities['4'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.quality', 4)
-            ->count();
-        $qualities['5'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.quality', 5)
-            ->count();
+        foreach ($evs as $ev) {
+          for ($i = 1; $i <= 12; $i++) {
+              if ($ev[$i] != null) {
+                  switch ($ev[$i]) {
+                      case 1:
+                          $evShow[$i][1]++;
+                          break;
+                      case 2:
+                          $evShow[$i][2]++;
+                          break;
+                      case 3:
+                          $evShow[$i][3]++;
+                          break;
+                      case 4:
+                          $evShow[$i][4]++;
+                          break;
+                      case 5:
+                          $evShow[$i][5]++;
+                          break;
 
-        $conditions['1'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.conditions', 1)
-            ->count();
-        $conditions['2'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.conditions', 2)
-            ->count();
-        $conditions['3'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.conditions', 3)
-            ->count();
-        $conditions['4'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.conditions', 4)
-            ->count();
-        $conditions['5'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.conditions', 5)
-            ->count();
-        $interactions['1'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.interaction', 1)
-            ->count();
-        $interactions['2'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.interaction', 2)
-            ->count();
-        $interactions['3'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.interaction', 3)
-            ->count();
-        $interactions['4'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.interaction', 4)
-            ->count();
-        $interactions['5'] = Evaluation::join('shipments', 'shipments.id', '=', 'evaluations.shipment_id')
-            ->where('shipments.user_id', auth()->user()->id)
-            ->where('evaluations.interaction', 5)
-            ->count();
-
+                  }
+              }
+          }
+        }
 
         $shipments = Shipment::query()->where('user_id', auth()->user()->id)->where(function ($query) {
             $query->orWhere('delivery_date', '<', Carbon::now(new DateTimeZone('Europe/Moscow')));
@@ -152,7 +181,7 @@ class EvaluationController extends Controller
             }
         }
         $shipments = $shipments->paginate(10);
-        return view('evaluation.index', compact('speeds', 'qualities', 'conditions', 'interactions', 'shipments', 'subcategories'));
+        return view('evaluation.index', compact( 'shipments', 'subcategories', 'evShow'));
     }
     public function show(Shipment $shipment)
     {
